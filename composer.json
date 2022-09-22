@@ -1,0 +1,19 @@
+{
+    "name": "devpackage/quote",
+    "description": "Quote - A simple quote display package",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Edanur Özdemir",
+            "email": "edanurozdemir23@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Devpackage\\Quote\\": "src/"
+        }
+    },
+    "require": {}
+}

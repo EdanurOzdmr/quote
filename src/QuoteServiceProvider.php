@@ -14,7 +14,7 @@ class QuoteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private const PATH_VIEWS = __DIR__.'/../resources/views';
+
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'\config\quoteconfig.php', 'quote');

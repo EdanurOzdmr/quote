@@ -14,9 +14,10 @@ class Quotes extends Component
      *
      * @return void
      */
+
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -26,7 +27,7 @@ class Quotes extends Component
      */
     public function render()
     {
-        return view('components.quotes');
+        return view('quote::components.quotes');
     }
     public function quotes()
     {

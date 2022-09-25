@@ -2,6 +2,8 @@
 
 namespace Devpackage\Quote\View\Components;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 use function view;
 
@@ -26,4 +28,20 @@ class Quotes extends Component
     {
         return view('components.quotes');
     }
+    public function quotes()
+    {
+        $pagename=Request::path();
+        $data = Collection::make(config('quoteconfig.quotes'));
+        if(isset($data[$pagename])){
+            $value=$data[$pagename];
+            $rand_quote=array_rand($value,1);
+            $quotes=$value[$rand_quote];
+        }
+        else{
+            $quotes='';
+        }
+
+        return $quotes;
+    }
+
 }

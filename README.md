@@ -29,20 +29,30 @@ Publish config files.If you want to add your own quote just add it at the last r
 `$ php artisan vendor:publish --provider="Devpackage\Quote\QuoteServiceProvider"`
 
 ## Usage
+Don't forget to add the `<x-quotes/>` code to the layout file.
 
-
-$pagename is the name of your web page. If there is a quote in the configuration file of your web page, the quote will be listed where the {{$quote}} code you added on your web page is located. 
-
-Add the following code to the web.php file.
+##Simple Example
 
 ```
+<html lang="en">
+<head>
+    <title>Quotes Package</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+<div class="container">
 
-Route::get('/{pagename}',  function($pagename) {
-$quote = new QuotePackage();
-$quotes= $quote->quoteList($pagename);
-return view($pagename) ->with('quotes',$quotes);
-});
+    <div id="main" class="row">
+        @yield('content')
+    </div>
+    <div>
+        <h1>Quote</h1>
+        <x-quotes/>
+    </div>
 
+</div>
+
+</body>
+</html>
 ```
-
-Don't forget to add the `{{$quotes}}` code where you want to display the quote on your relevant web page!

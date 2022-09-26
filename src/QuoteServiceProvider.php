@@ -17,7 +17,7 @@ class QuoteServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'\config\quoteconfig.php', 'quote');
+        $this->mergeConfigFrom(__DIR__.'/config/quoteconfig.php', 'quote');
     }
 
     /**
@@ -28,7 +28,7 @@ class QuoteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'\config\quoteconfig.php' => config_path('quoteconfig.php'),
+            __DIR__.'/config/quoteconfig.php' => config_path('quoteconfig.php'),
         ], 'quoteconfig');
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'quote');

@@ -34,9 +34,9 @@ class Quotes extends Component
         $pagename=Request::path();
         $data = Collection::make(config('quoteconfig.quotes'));
         if(isset($data[$pagename])){
-            $value=$data[$pagename];
-            $rand_quote=array_rand($value,1);
-            $quotes=$value[$rand_quote];
+            $quotes=$data[$pagename];
+          //  $rand_quote=array_rand($value,1);
+           // $quotes=$value[$rand_quote];
         }
         else{
             $quotes='';

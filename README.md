@@ -31,7 +31,7 @@ Publish config files.If you want to add your own quote just add it at the last r
 ## Usage
 Don't forget to add the `<x-quotes/>` code to the layout file.
 
-##Simple Example
+## Simple Example
 
 ```
 <html lang="en">

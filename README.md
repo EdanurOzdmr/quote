@@ -13,8 +13,11 @@ Via Composer
 `$ composer require devpackage/quote
 `
 
-Add service provider at config/app.php if you're using Laravel 5.4 and below. Latest Laravel versions have auto dicovery and automatically add service provider.
-If you want to add your own quote, simply add it to the last line of the directory at config/quoteconfig.php.
+
+Once Devpackage Quotes is installed, you need to register the service provider. Open up config/app.php and add the following to the providers key.
+
+`Devpackage\Quote\QuoteServiceProvider::class
+`Also, register the Facade like so:
 
 ```
 
@@ -26,12 +29,14 @@ Devpackage\Quote\QuoteServiceProvider::class
 ```
 
 
-or
+## Configuration
+To get started, you'll need to publish all vendor assets:
 
 `$ php artisan vendor:publish --provider="Devpackage\Quote\QuoteServiceProvider"`
 
+
 ## Usage
-Don't forget to add the `<x-quotes/>` code to the layout file. 
+Don't forget to add the `<x-quotes/>` code to the layout file.   If you want to add your own quote, simply add it to the last line of the directory at config/quoteconfig.php.
 
 ## Simple Example
 

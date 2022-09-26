@@ -31,11 +31,23 @@ class Quotes extends Component
     }
     public function quotes()
     {
+        session_start();
+
         $pagename=Request::path();
         $data = Collection::make(config('quoteconfig.quotes'));
         if(isset($data[$pagename])){
-            $quotes=$data[$pagename];
-          //  $rand_quote=array_rand($value,1);
+            $value=$data[$pagename];
+            if (!isset($_SESSION['count'])) {
+                $_SESSION['count'] = 0;
+            } else {
+                if($_SESSION['count']<count($value)-1)
+                    $_SESSION['count']++;
+                else{
+                    $_SESSION['count']=0;
+                }
+            }
+            $quotes=$value[$_SESSION['count']];
+           // $rand_quote=array_rand($value,1);
            // $quotes=$value[$rand_quote];
         }
         else{

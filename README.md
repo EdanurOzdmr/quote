@@ -4,7 +4,6 @@
 Laravel package that lists random quotes.
 
 The excerpts contained in the configuration file in this package are listed on the page according to the selected page.
-If you want to add your own quote, simply add it to the last line of the directory at config/quoteconfig.php.
 
 ## Installation
 

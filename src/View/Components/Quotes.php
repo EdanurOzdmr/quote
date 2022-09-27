@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 use function view;
 
+
 class Quotes extends Component
 {
     /**
@@ -31,30 +32,40 @@ class Quotes extends Component
     }
     public function quotes()
     {
-        session_start();
-
         $pagename=Request::path();
-        $data = Collection::make(config('quoteconfig.quotes'));
-        if(isset($data[$pagename])){
-            $value=$data[$pagename];
-            if (!isset($_SESSION['count'])) {
-                $_SESSION['count'] = 0;
-            } else {
-                if($_SESSION['count']<count($value)-1)
-                    $_SESSION['count']++;
-                else{
-                    $_SESSION['count']=0;
-                }
-            }
-            $quotes=$value[$_SESSION['count']];
-           // $rand_quote=array_rand($value,1);
-           // $quotes=$value[$rand_quote];
-        }
-        else{
-            $quotes='';
-        }
-
+        $data = Collection::make(config('quoteconfig.categories'));
+        $quotes=$this->quotesAPI($data[$pagename]);
+      //  $quotes=json_decode($quotes, true);
         return $quotes;
+
+    }
+    public function quotesAPI($category){
+
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://api.api-ninjas.com/v1/quotes?category=$category",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-Api-Key: h1dF2oUsjtF0pOVkH4j/Xg==Ire99vyXK87psSEh",
+            ], // QUOTES API profile api key
+        ]);
+
+        $data = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return "cURL Error #:" . $err;
+        } else {
+            return $data;
+        }
     }
 
 }

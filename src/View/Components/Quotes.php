@@ -2,7 +2,6 @@
 
 namespace Devpackage\Quote\View\Components;
 
-use HttpRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;

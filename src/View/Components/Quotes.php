@@ -2,6 +2,7 @@
 
 namespace Devpackage\Quote\View\Components;
 
+use HttpRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
@@ -30,16 +31,19 @@ class Quotes extends Component
     {
         return view('quote::components.quotes');
     }
+
     public function quotes()
     {
-        $pagename=Request::path();
+        $pagename = Request::path();
         $data = Collection::make(config('quoteconfig.categories'));
-        $quotes=$this->quotesAPI($data[$pagename]);
-      //  $quotes=json_decode($quotes, true);
+        $quotes = $this->quotesAPI($data[$pagename]);
+
         return $quotes;
 
     }
-    public function quotesAPI($category){
+
+    public function quotesAPI($category)
+    {
 
         $curl = curl_init();
         curl_setopt_array($curl, [
@@ -53,7 +57,7 @@ class Quotes extends Component
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => [
                 "X-Api-Key: h1dF2oUsjtF0pOVkH4j/Xg==Ire99vyXK87psSEh",
-            ], // QUOTES API profile api key
+            ], // QUOTES API profile get api key
         ]);
 
         $data = curl_exec($curl);
@@ -67,5 +71,4 @@ class Quotes extends Component
             return $data;
         }
     }
-
 }
